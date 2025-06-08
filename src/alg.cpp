@@ -57,7 +57,7 @@ void collectPerm(std::shared_ptr<PMTree::Node> node,
     }
 }
 
-std::vector<std::vector<char>> getPermAll(const PMTree& tree) {
+std::vector<std::vector<char>> getAllPerm(const PMTree& tree) {
     std::vector<std::vector<char>> result;
     if (!tree.getRoot()) {
         return result;
@@ -69,7 +69,7 @@ std::vector<std::vector<char>> getPermAll(const PMTree& tree) {
 }
 
 std::vector<char> getPerm1(const PMTree& tree, int num) {
-    auto all_perms = getPermAll(tree);
+    auto all_perms = getAllPerm(tree);
     if (num <= 0 || static_cast<size_t>(num) > all_perms.size()) {
         return {};
     }
@@ -77,7 +77,7 @@ std::vector<char> getPerm1(const PMTree& tree, int num) {
 }
 
 std::vector<char> getPerm2(const PMTree& tree, int num) {
-    if (num <= 0 || static_cast<size_t>(num) > tree.getPermAll()) {
+    if (num <= 0 || static_cast<size_t>(num) > tree.getAllPerm()) {
         return {};
     }
 

@@ -14,7 +14,7 @@ class PMTree {
         explicit Node(char val) : value(val) {}
     };
     std::shared_ptr<Node> getRoot() const { return _root; }
-    size_t getAllPerm() const { return final_permut; }
+    size_t getAllPerm() const { return final_perm; }
  private:
     std::shared_ptr<Node> _root;
     size_t final_perm;

@@ -14,15 +14,15 @@ class PMTree {
         explicit Node(char val) : value(val) {}
     };
     std::shared_ptr<Node> getRoot() const { return _root; }
-    size_t getAllPermutations() const { return final_permut; }
+    size_t getAllPerm() const { return final_permut; }
  private:
     std::shared_ptr<Node> _root;
-    size_t final_permut;
+    size_t final_perm;
     void buildTree(std::shared_ptr<Node> parent,
                  const std::vector<char>& remaining_elements);
 };
 
-std::vector<std::vector<char>> getAllPermuts(const PMTree& tree);
+std::vector<std::vector<char>> getAllPerm(const PMTree& tree);
 std::vector<char> getPerm1(const PMTree& tree, int num);
 std::vector<char> getPerm2(const PMTree& tree, int num);
 #endif  // INCLUDE_TREE_H_

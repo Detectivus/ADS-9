@@ -11,13 +11,13 @@
 PMTree::PMTree(const std::vector<char>& elements) {
     if (elements.empty()) {
         _root = nullptr;
-        final_permut = 0;
+        final_perm = 0;
         return;
     }
     _root = std::make_shared<Node>('\0');
-    final_permut = 1;
+    final_perm = 1;
     for (size_t i = 1; i <= elements.size(); ++i) {
-        final_permut *= i;
+        final_perm *= i;
     }
     buildTree(_root, elements);
 }
@@ -37,7 +37,7 @@ void PMTree::buildTree(std::shared_ptr<Node> parent,
     }
 }
 
-void collectPermutations(std::shared_ptr<PMTree::Node> node,
+void collectPerm(std::shared_ptr<PMTree::Node> node,
                         std::vector<char>& currNode,
                         std::vector<std::vector<char>>& result) {
     if (node->value != '\0') {
@@ -48,7 +48,7 @@ void collectPermutations(std::shared_ptr<PMTree::Node> node,
         result.push_back(currNode);
     } else {
         for (const auto& child : node->children) {
-            collectPermutations(child, currNode, result);
+            collectPerm(child, currNode, result);
         }
     }
 
@@ -57,19 +57,19 @@ void collectPermutations(std::shared_ptr<PMTree::Node> node,
     }
 }
 
-std::vector<std::vector<char>> getAllPermuts(const PMTree& tree) {
+std::vector<std::vector<char>> getPermAll(const PMTree& tree) {
     std::vector<std::vector<char>> result;
     if (!tree.getRoot()) {
         return result;
     }
 
     std::vector<char> currNode;
-    collectPermutations(tree.getRoot(), currNode, result);
+    collectPerm(tree.getRoot(), currNode, result);
     return result;
 }
 
 std::vector<char> getPerm1(const PMTree& tree, int num) {
-    auto all_perms = getAllPermuts(tree);
+    auto all_perms = getPermAll(tree);
     if (num <= 0 || static_cast<size_t>(num) > all_perms.size()) {
         return {};
     }
@@ -77,7 +77,7 @@ std::vector<char> getPerm1(const PMTree& tree, int num) {
 }
 
 std::vector<char> getPerm2(const PMTree& tree, int num) {
-    if (num <= 0 || static_cast<size_t>(num) > tree.getAllPermutations()) {
+    if (num <= 0 || static_cast<size_t>(num) > tree.getPermAll()) {
         return {};
     }
 
